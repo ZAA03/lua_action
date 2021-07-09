@@ -1,18 +1,12 @@
 name: main
 on: 
-
-     watch:
-      types: started    #手动点亮star则执行
-    
   schedule:
-      - cron:  '35 18 * * *'
+      - cron:  '42 18 * * *'
+      
 
 jobs:
   test:
     runs-on: ubuntu-latest
-        if: github.event.repository.owner.id == github.event.sender.id
-
-
     steps:
     - uses: actions/checkout@master
     - uses: leafo/gh-actions-lua@v8
