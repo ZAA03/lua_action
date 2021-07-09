@@ -1,12 +1,17 @@
 name: main
 on: 
-  push:
-  schedule: # 计划任务触发
-    - cron:  '05 16 * * *'
+
+     watch:
+      types: started    #手动点亮star则执行
+    
+  schedule:
+      - cron:  '35 18 * * *'
 
 jobs:
   test:
     runs-on: ubuntu-latest
+        if: github.event.repository.owner.id == github.event.sender.id
+
 
     steps:
     - uses: actions/checkout@master
