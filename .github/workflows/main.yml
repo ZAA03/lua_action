@@ -2,7 +2,7 @@ name: main
 on: 
   push:
   schedule: # 计划任务触发
-    - cron:  '55 15 * * *'
+    - cron:  '05 16 * * *'
   watch:
     types: started    #手动点亮star则执行
 jobs:
