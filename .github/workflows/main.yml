@@ -3,14 +3,23 @@ on:
   schedule:
           - cron:  '30 19 * * *'
              # 24+3-8= 19  凌晨3：30分运行
+  watch:
+    types: started    #手动star执行
+     
 jobs:
   test:
     runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
     steps:
     - uses: actions/checkout@master
     - uses: leafo/gh-actions-lua@v8
       with:
         luaVersion: "5.1.4"
+        
+    - name: 设置时区
+      run:  |
+              timedatectl set-timezone Asia/Shanghai
+            
         
     - uses: leafo/gh-actions-luarocks@v4
     - name: 安装模块 
@@ -26,7 +35,6 @@ jobs:
              lua ./hlxSignin.lua
              lua ./jzkjSignin.lua
       env:
-        
             token: ${{ secrets.token }}
             hlxk: ${{ secrets.hlxk }}
             jzkjk: ${{ secrets.jzkjk }}
