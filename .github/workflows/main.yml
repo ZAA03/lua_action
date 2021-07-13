@@ -1,4 +1,4 @@
-name: main
+name: 双签【葫芦侠】【芥子空间】
 on: 
   schedule:
           - cron:  '30 19 * * *'
